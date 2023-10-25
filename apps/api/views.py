@@ -16,7 +16,8 @@ class BookingAPIView(APIView):
         return Response(serializer.data, status=HTTP_200_OK)
     
     def post(self, request):
-        serializer = BookingSerializer(request.data)
+        bookings = Booking.objects.all()
+        serializer = BookingSerializer(bookings, request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=HTTP_201_CREATED)
@@ -51,7 +52,8 @@ class GuestAPIView(APIView):
         return Response(serializer.data, status=HTTP_200_OK)
     
     def post(self, request):
-        serializer = GuestSerializer(request.data)
+        guests  = Guest.objects.all()
+        serializer = GuestSerializer(guests, request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=HTTP_201_CREATED)
@@ -85,7 +87,8 @@ class HotelAPIView(APIView):
         return Response(serializer.data, status=HTTP_200_OK)
     
     def post(self, request):
-        serializer = HotelSerializer(request.data)
+        hotels = Hotel.objects.all()
+        serializer = HotelSerializer(hotels, request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=HTTP_201_CREATED)
@@ -119,7 +122,8 @@ class RoomAPIView(APIView):
         return Response(serializer.data, status=HTTP_200_OK)
     
     def post(self, request):
-        serializer = RoomSerializer(request.data)
+        rooms = Room.objects.all()
+        serializer = RoomSerializer(rooms, request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=HTTP_201_CREATED)
